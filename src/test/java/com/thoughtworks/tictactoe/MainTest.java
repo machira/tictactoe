@@ -38,22 +38,13 @@ public class MainTest {
         }
     }
 
-    @Test
-    public void shouldRejectInvalidInput(){
-        try{
-            when(bufferedReader.readLine()).thenReturn("11").thenReturn("-1").thenReturn("0");
-            main.start();
-            verify(printStream, times(2)).println("Invalid choice: 0-9");
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-    }
+
 
     @Test
     public void shouldWarnPlayerAboutOccupiedLocations(){
         try{
             when(bufferedReader.readLine()).thenReturn("1").thenReturn("1").thenReturn("0");
-            when(board.move(anyInt(),anyInt())).thenReturn(true).thenReturn(false);
+            when(board.move(anyInt(),anyInt())).thenReturn(true).thenReturn(true);
             main.start();
             verify(printStream).println("Location Already Taken");
         }catch (IOException ioe){

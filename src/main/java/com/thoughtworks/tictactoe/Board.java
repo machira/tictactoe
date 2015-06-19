@@ -4,13 +4,17 @@ package com.thoughtworks.tictactoe;
  * Created by machira on Jun/18/15.
  */
 public class Board {
-    int size;
+    private int size;
     int [][] boardArray;
     public Board(int size) {
         this.size = size;
         this.boardArray = new int [size][size];
     }
 
+
+    public int getSize(){
+        return size;
+    }
 
     public boolean movePlayer1(int move){
         return move (move, 1);
@@ -72,5 +76,16 @@ public class Board {
             }
         }
         return true;
+    }
+
+    private int[] indexTo2Dimensional(int index){
+        int index1 = index/size;
+        int index2 = index - (index1 * size);
+        return new int[]{index1, index2};
+    }
+
+    public boolean isEmpty(int index){
+        int []dims = indexTo2Dimensional(index);
+        return boardArray[dims[0]][dims[1]] == 0;
     }
 }
