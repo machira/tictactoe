@@ -6,9 +6,9 @@ package com.thoughtworks.tictactoe;
 public class Board {
     private int size;
     int [][] boardArray;
-    public Board(int size) {
-        this.size = size;
-        this.boardArray = new int [size][size];
+    public Board(int [][]boardArray) {
+        this.size = boardArray.length;
+        this.boardArray = boardArray;
     }
 
 
@@ -16,13 +16,6 @@ public class Board {
         return size;
     }
 
-    public boolean movePlayer1(int move){
-        return move (move, 1);
-    }
-
-    public boolean movePlayer2(int move){
-        return move (move, -1);
-    }
     public boolean move(int move, int marker){
 //        move = move - 1;
         int index1 = move/size;
@@ -87,5 +80,28 @@ public class Board {
     public boolean isEmpty(int index){
         int []dims = indexTo2Dimensional(index);
         return boardArray[dims[0]][dims[1]] == 0;
+    }
+
+    public boolean isWon(){
+        return horizontalWin() || verticalWin() || diagonalWin();
+    }
+
+
+    private boolean horizontalWin(){
+        return ((boardArray[0][0] != 0) && (boardArray[0][0] == boardArray[0][1]) && (boardArray[0][1] == boardArray[0][2])) ||
+               ((boardArray[1][0] != 0) && (boardArray[1][0] == boardArray[1][1]) && (boardArray[1][1] == boardArray[1][2])) ||
+               ((boardArray[2][0] != 0) && (boardArray[2][0] == boardArray[2][1]) && (boardArray[2][1] == boardArray[2][2]));
+    }
+
+    private boolean diagonalWin(){
+
+        return ((boardArray[0][0] != 0) && (boardArray[0][0] == boardArray[1][1]) && (boardArray[1][1] == boardArray[2][2])) ||
+               ((boardArray[2][0] != 0) && (boardArray[2][0] == boardArray[1][1]) && (boardArray[1][1] == boardArray[0][2]));
+    }
+
+    private boolean verticalWin(){
+        return ((boardArray[0][0] != 0) && (boardArray[0][0] == boardArray[1][0]) && (boardArray[1][0] == boardArray[2][0])) ||
+               ((boardArray[0][1] != 0) && (boardArray[0][1] == boardArray[1][1]) && (boardArray[1][1] == boardArray[2][1])) ||
+               ((boardArray[0][2] != 0) && (boardArray[0][2] == boardArray[1][2]) && (boardArray[1][2] == boardArray[2][2]));
     }
 }

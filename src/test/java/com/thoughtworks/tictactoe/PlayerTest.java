@@ -18,40 +18,37 @@ public class PlayerTest {
     BufferedReader bufferedReader;
     Player player;
     PrintStream printStream;
+    Board board;
 
     @Before
     public void setUp(){
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
-        player = new Player(bufferedReader,printStream,1);
+        player = new Player("Player1",bufferedReader,printStream,1);
+        board = mock(Board.class);
     }
 
 
     @Test
-    public void shouldRejectInvalidInput(){
-        try{
-            when(bufferedReader.readLine()).thenReturn("11").thenReturn("-1").thenReturn("1");
-            int input = player.getInput(9);
-            Assert.assertEquals(1,input);
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
+    public void shouldRejectInvalidInput() throws IOException{
+        when(bufferedReader.readLine()).thenReturn("11").thenReturn("-1").thenReturn("1");
+        int input = player.getInput(9);
+        Assert.assertEquals(1,input);
     }
 
     @Test
-    public void shouldWarnPlayerOfOccupiedCells(){
-        try {
-            when(bufferedReader.readLine()).thenReturn("1").thenReturn("2");
-            Board board = mock(Board.class);
-            when(board.getSize()).thenReturn(3);
-            when(board.isEmpty(1)).thenReturn(false);
-            when(board.isEmpty(2)).thenReturn(true);
-            player.makeMove(board);
-            verify(printStream).println("Location Already Taken. Please try again");
-        }catch (IOException ioe){
-            ;
-        }
+    public void shouldWarnPlayerOfOccupiedCells() throws IOException{
+        when(bufferedReader.readLine()).thenReturn("1").thenReturn("2");
+        when(board.getSize()).thenReturn(3);
+        when(board.isEmpty(1)).thenReturn(false);
+        when(board.isEmpty(2)).thenReturn(true);
+        player.makeMove(board);
+        verify(printStream).println("Location Already Taken. Please try again");
+    }
 
-//        when(player.getInput(anyInt())).thenReturn(1);
+    @Test
+    public void shouldMarkCorrectLocationOnBoard(){
+        player.makeMoveOnBoard(board, 2);
+        verify(board).move(1,1);
     }
 }
