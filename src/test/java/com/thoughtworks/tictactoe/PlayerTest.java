@@ -32,14 +32,13 @@ public class PlayerTest {
     @Test
     public void shouldRejectInvalidInput() throws IOException{
         when(bufferedReader.readLine()).thenReturn("11").thenReturn("-1").thenReturn("1");
-        int input = player.getInput(9);
+        int input = player.getInput();
         Assert.assertEquals(1,input);
     }
 
     @Test
     public void shouldWarnPlayerOfOccupiedCells() throws IOException{
         when(bufferedReader.readLine()).thenReturn("1").thenReturn("2");
-        when(board.getSize()).thenReturn(3);
         when(board.isEmpty(1)).thenReturn(false);
         when(board.isEmpty(2)).thenReturn(true);
         player.makeMove(board);

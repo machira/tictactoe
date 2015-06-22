@@ -6,22 +6,16 @@ import java.util.List;
  * Created by machira on Jun/18/15.
  */
 public class Board {
-    private int size;
     List<String> boardArray;
     public Board(List<String> boardArray) {
-        this.size = boardArray.size();
         this.boardArray = boardArray;
     }
 
     public Board(){
-        String [] strings =new String[]{"","","",
+        String [] strings = new String[]{"","","",
                                         "","","",
                                         "","",""};
         this.boardArray = Arrays.asList(strings);
-    }
-
-    public int getSize(){
-        return size;
     }
 
 
@@ -46,8 +40,8 @@ public class Board {
 
 
     public boolean isFull(){
-        for (int i = 0; i < size; i++) {
-            if(boardArray.get(i).equals("")){
+        for(String cell: boardArray){
+            if(cell.equals("")){
                 return false;
             }
         }

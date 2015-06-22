@@ -7,6 +7,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -35,10 +36,15 @@ public class GameTest {
     @Test
     public void shouldAlternatePlayersOnStart(){
         when(board.isFull()).thenReturn(false).thenReturn(true);
-//        when(player1.makeMove(board)).thenReturn(board);
-//        when(player2.makeMove(board)).thenReturn(board);
         game.start();
         verify(player1).makeMove(board);
         verify(player2).makeMove(board);
+    }
+
+    @Test
+    public void shouldQuitWhenGameIsWon(){
+        when(board.isWon()).thenReturn(false).thenReturn(true);
+        game.start();
+        verify(printStream).println(contains("has won"));
     }
 }

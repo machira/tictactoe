@@ -17,24 +17,25 @@ public class Game {
         this.players = players;
         this.printStream = printStream;
     }
-    public boolean alternatePlayers(){
-        for(Player player: players){
-            player.makeMove(board);
-            if(board.isFull()){
-                return false;
+    public void alternatePlayers(){
+        while(true){
+            for(Player player: players){
+                player.makeMove(board);
+                if(board.isFull()){
+                    return;
+                }if(board.isWon()){
+                    printStream.println(player.getPlayerName() + " has won.");
+                    return;
+                }
+
+                printStream.println(board.toString());
             }
-            printStream.println(board.toString());
+
         }
-        return true;
     }
 
     public void start() {
-        do {
-            printStream.println(board.toString());
-        }while (alternatePlayers());
-
-
-        printStream.println(board.toString());
+       alternatePlayers();
 
     }
 

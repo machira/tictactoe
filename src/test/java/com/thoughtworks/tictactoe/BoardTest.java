@@ -133,4 +133,9 @@ public class BoardTest {
                                             "", "", ""}))).isWon(), is(false));
     }
 
+    @Test
+    public void shouldIndicateEmptyBoardWhenBoardIsEmpty(){
+        assertThat(board.isFull(), is(false));
+    }
+
 }

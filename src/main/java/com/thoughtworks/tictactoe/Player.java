@@ -12,6 +12,7 @@ public class Player {
     BufferedReader bufferedReader;
     private PrintStream printStream;
     String mark;
+    private int BOARDSIZE = 9;
 
 
     public Player(String name, BufferedReader bufferedReader, PrintStream printStream, String mark){
@@ -21,21 +22,24 @@ public class Player {
         this.mark = mark;
     }
 
+    public String getPlayerName(){
+        return playerName;
+    }
     public void makeMove(Board board){
         if(board.isFull()){
             return;
         }
-        int move = getInput(board.getSize() * board.getSize());
+        int move = getInput();
         move -= 1;
         while(!board.isEmpty(move)){
             printStream.println("Location Already Taken. Please try again");
-            move = getInput(board.getSize() * board.getSize());
+            move = getInput();
         }
         board.move(move,mark);
     }
 
 
-    public int getInput(int maxIndex){
+    public int getInput(){
         // repeat until valid input
         int choice = 0;
         do {
@@ -47,7 +51,7 @@ public class Player {
             }catch (IOException ie){
                 printStream.println("You must enter input");
             }
-        }while (choice < 1 || choice > maxIndex);
+        }while (choice < 1 || choice > BOARDSIZE);
 
         return choice;
     }
