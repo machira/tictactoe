@@ -11,19 +11,19 @@ public class Player {
     private String playerName;
     BufferedReader bufferedReader;
     private PrintStream printStream;
-    int mark = 0;
+    String mark;
 
 
-    public Player(String name, BufferedReader bufferedReader, PrintStream printStream, int mark){
+    public Player(String name, BufferedReader bufferedReader, PrintStream printStream, String mark){
         this.playerName = name;
         this.bufferedReader = bufferedReader;
         this.printStream = printStream;
         this.mark = mark;
     }
 
-    public Board makeMove(Board board){
+    public void makeMove(Board board){
         if(board.isFull()){
-            return board;
+            return;
         }
         int move = getInput(board.getSize() * board.getSize());
         move -= 1;
@@ -31,14 +31,9 @@ public class Player {
             printStream.println("Location Already Taken. Please try again");
             move = getInput(board.getSize() * board.getSize());
         }
-        makeMoveOnBoard(board,move);
-//        board.move(move,mark);
-        return board;
-    }
-
-    public void makeMoveOnBoard(Board board, int move){
         board.move(move,mark);
     }
+
 
     public int getInput(int maxIndex){
         // repeat until valid input

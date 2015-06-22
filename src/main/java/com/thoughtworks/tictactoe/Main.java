@@ -10,12 +10,10 @@ public class Main {
 
     public static void main(String[] args){
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Board board = new Board(new int[][]{{0,0,0},
-                                            {0,0,0},
-                                            {0,0,0}});
+        Board board = new Board();
         Player [] players = {
-                                new Player("Player1", bufferedReader, System.out,1),
-                                new Player("Player2", bufferedReader, System.out,-1)
+                                new Player("Player1", bufferedReader, System.out,"X"),
+                                new Player("Player2", bufferedReader, System.out,"O")
                             };
         Game game = new Game(board,players,System.out);
         game.start();

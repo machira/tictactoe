@@ -19,7 +19,7 @@ public class Game {
     }
     public boolean alternatePlayers(){
         for(Player player: players){
-            board = player.makeMove(board);
+            player.makeMove(board);
             if(board.isFull()){
                 return false;
             }

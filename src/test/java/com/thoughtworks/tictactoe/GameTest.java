@@ -35,8 +35,8 @@ public class GameTest {
     @Test
     public void shouldAlternatePlayersOnStart(){
         when(board.isFull()).thenReturn(false).thenReturn(true);
-        when(player1.makeMove(board)).thenReturn(board);
-        when(player2.makeMove(board)).thenReturn(board);
+//        when(player1.makeMove(board)).thenReturn(board);
+//        when(player2.makeMove(board)).thenReturn(board);
         game.start();
         verify(player1).makeMove(board);
         verify(player2).makeMove(board);
