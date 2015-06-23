@@ -1,5 +1,6 @@
 package com.thoughtworks.tictactoe;
 
+import com.thoughtworks.tictactoe.player.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,18 +15,18 @@ import static org.mockito.Mockito.*;
 public class GameTest {
     Game game;
     Board board;
-    Player player1, player2;
+    HumanPlayer player1, player2;
     PrintStream printStream;
 
 
     @Before
     public void setUp(){
-        player1 = mock(Player.class);
-        player2 = mock(Player.class);
+        player1 = mock(HumanPlayer.class);
+        player2 = mock(HumanPlayer.class);
         board = mock(Board.class);
         printStream = mock(PrintStream.class);
 
-        game = new Game(board,new Player[]{player1,player2},printStream);
+        game = new Game(board,new HumanPlayer[]{player1,player2},printStream);
 
     }
 
@@ -40,7 +41,7 @@ public class GameTest {
         // With this set up, we expect player1 to get two turns, and player2 to get 1
         when(board1.isFull()).thenReturn(false).thenReturn(false).thenReturn(true);
 
-        Game game1 = new Game(board1,new Player[]{player1,player2},printStream);
+        Game game1 = new Game(board1,new HumanPlayer[]{player1,player2},printStream);
         game1.start();
         verify(player1, times(2)).makeMove(board1);
         verify(player2).makeMove(board1);

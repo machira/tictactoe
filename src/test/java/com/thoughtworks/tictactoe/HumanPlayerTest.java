@@ -1,5 +1,6 @@
 package com.thoughtworks.tictactoe;
 
+import com.thoughtworks.tictactoe.player.HumanPlayer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,10 +14,10 @@ import static org.mockito.Mockito.*;
 /**
  * Created by machira on Jun/18/15.
  */
-public class PlayerTest {
+public class HumanPlayerTest {
 
     BufferedReader bufferedReader;
-    Player player;
+    HumanPlayer player;
     PrintStream printStream;
     Board board;
 
@@ -24,7 +25,7 @@ public class PlayerTest {
     public void setUp(){
         bufferedReader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
-        player = new Player("Player1",bufferedReader,printStream,"X");
+        player = new HumanPlayer("Player1",bufferedReader,printStream,"X");
         board = mock(Board.class);
     }
 

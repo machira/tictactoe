@@ -1,4 +1,7 @@
 package com.thoughtworks.tictactoe;
+import com.thoughtworks.tictactoe.player.HumanPlayer;
+import com.thoughtworks.tictactoe.player.Player;
+
 import java.io.PrintStream;
 
 /**
