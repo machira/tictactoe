@@ -46,8 +46,29 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldMarkCorrectLocationOnBoard(){
-//        player.makeMoveOnBoard(board, 2);
-//        verify(board).move(1,1);
+    public void shouldMarkCorrectLocationOnBoard() throws IOException {
+        // To keep it natural, we let human players reference cells as 1-9, and then -1 to reference the corresponding
+        // array position. This tests that that works.
+
+        when(bufferedReader.readLine()).thenReturn("5");
+        when(board.isEmpty(anyInt())).thenReturn(true);
+        player.makeMove(board);
+        verify(board).move(4,"X");
     }
+
+    @Test
+    public void shouldPromptUserForInput() throws IOException {
+        when(board.isFull()).thenReturn(false);
+        when(bufferedReader.readLine()).thenReturn("5");
+        when(board.isEmpty(anyInt())).thenReturn(true);
+        player.makeMove(board);
+        verify(printStream).print(contains("Enter (1-9)"));
+        verify(bufferedReader).readLine();
+    }
+
+
+//    @Test
+//    public void should
+
+
 }
