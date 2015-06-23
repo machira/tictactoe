@@ -75,4 +75,21 @@ public class Board {
                (!boardArray.get(1).equals("") && boardArray.get(1).equals(boardArray.get(4)) && boardArray.get(4).equals(boardArray.get(7))) ||
                (!boardArray.get(2).equals("") && boardArray.get(2).equals(boardArray.get(5)) && boardArray.get(5).equals(boardArray.get(8)));
     }
+
+
+    public boolean isWinningMove(int i, String mark) {
+        boardArray.set(i, mark);
+        boolean isWon = isWon();
+        boardArray.set(i,"");
+        return isWon;
+    }
+
+    public boolean equals(Board other){
+        for (int i = 0; i < boardArray.size(); i++) {
+            if(isEmpty(i)!=other.isEmpty(i)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

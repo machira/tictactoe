@@ -6,10 +6,9 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by machira on Jun/18/15.
@@ -19,10 +18,9 @@ public class BoardTest {
     int boardSize = 3;
     @Before
     public void setUp(){
-        String [] strings ={"","","",
-                            "","","",
-                            "","",""};
-        board = new Board(Arrays.asList(strings));
+        board = new Board(Arrays.asList("","","",
+                                        "","","",
+                                        "","",""));
     }
 
     @Test
@@ -143,6 +141,46 @@ public class BoardTest {
     @Test
     public void shouldIndicateEmptyBoardWhenBoardIsEmpty(){
         assertThat(board.isFull(), is(false));
+    }
+
+
+    @Test
+    public void shouldCorrectlyTellIfASuggestedMoveWins(){
+        boolean notAWinningMove = board.isWinningMove(0, "X");
+        assertThat(notAWinningMove, is(false));
+
+        Board boardDiagonalWin = new Board(Arrays.asList(   "X", "", "",
+                                                            "", "X", "",
+                                                            "", "", ""));
+        assertThat(boardDiagonalWin.isWinningMove(8, "X"), is(true));
+
+        Board boardHorizontalWin = new Board(Arrays.asList( "X", "", "X",
+                                                            "", "", "",
+                                                            "", "", ""));
+        assertThat(boardHorizontalWin.isWinningMove(1, "X"), is(true));
+
+        Board boardVerticalWin = new Board(Arrays.asList(   "X", "", "",
+                                                            "", "", "",
+                                                            "X", "", ""));
+        assertThat(boardVerticalWin.isWinningMove(3, "X"), is(true));
+
+    }
+
+    @Test
+    public void shouldNotChangeBoardWhenAWinningTestIsPerformed(){
+        Board board1 = new Board(Arrays.asList( "", "", "",
+                                                "", "", "",
+                                                "", "", ""));
+
+        Board board2 = new Board(Arrays.asList( "", "", "",
+                                                "", "", "",
+                                                "", "", ""));
+
+        assertThat(board1.equals(board2), is(true));
+
+        board2.isWinningMove(2, "X");
+
+        assertThat(board1.equals(board2), is(true));
     }
 
 }

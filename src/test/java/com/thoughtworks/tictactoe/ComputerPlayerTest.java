@@ -32,9 +32,9 @@ public class ComputerPlayerTest {
 
     @Test
     public void shouldCorrectlyDetectWinningMovesWhenAvailable(){
-        Board oneHorizontalMoveToWin = new Board(Arrays.asList("O","O","",
-                                                     "", "", "",
-                                                     "", "", ""));
+        Board oneHorizontalMoveToWin=new Board(Arrays.asList("O","O","",
+                                                             "", "", "",
+                                                             "", "", ""));
         int move = computerPlayer.selectWinningMove(oneHorizontalMoveToWin);
         Assert.assertThat(move,is(2));
 
@@ -57,5 +57,21 @@ public class ComputerPlayerTest {
                                                                 "", "", ""));
         int winningDiagonalMove = computerPlayer.selectWinningMove(singleDiagonalMoveToWin);
         Assert.assertThat(winningDiagonalMove,is(8));
+    }
+
+    @Test
+    public void shouldBlockOpponentFromWinningMove(){
+        Board board = new Board(Arrays.asList(  "X","","X",
+                                                "", "O", "",
+                                                "", "", ""));
+
+    }
+
+    @Test
+    public void shouldPrioritizeWinningOverBlocking(){
+        Board boardWinningOrBlocking = new Board(Arrays.asList( "X","","X",
+                                                                "", "O", "",
+                                                                "", "", ""));
+
     }
 }
