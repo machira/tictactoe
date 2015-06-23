@@ -90,47 +90,54 @@ public class BoardTest {
 
     @Test
     public void shouldBeWonIfAllHorizontalPositionsAreSimilar(){
-        assertThat(new Board(Arrays.asList((new String[]{"X", "X", "X","", "", "","", "", ""}))).isWon(), is(true));
-        assertThat(new Board(Arrays.asList((new String[]{"", "", "","O", "O", "O","", "", ""}))).isWon(), is(true));
-        assertThat(new Board(Arrays.asList((new String[]{"", "", "","", "", "","X", "X", "X"}))).isWon(), is(true));
+        assertThat(new Board(Arrays.asList("X", "X", "X",
+                                            "", "", "",
+                                            "", "", "")).isWon(), is(true));
+
+        assertThat(new Board(Arrays.asList("", "", "",
+                                           "O", "O", "O",
+                                            "", "", "")).isWon(), is(true));
+        assertThat(new Board(Arrays.asList("", "", "",
+                                           "", "", "",
+                                           "X", "X", "X")).isWon(), is(true));
     }
 
     @Test
     public void shouldBeWonIfAllVerticalCellsAreSimilar(){
-        assertThat(new Board(Arrays.asList((new String[]{"", "", "X","", "", "X","", "", "X"}))).isWon(),is(true));
+        assertThat(new Board(Arrays.asList("", "", "X","", "", "X","", "", "X")).isWon(),is(true));
 
-        assertThat(new Board(Arrays.asList((new String[]{"", "X", "","", "X", "","", "X", ""}))).isWon(), is(true));
+        assertThat(new Board(Arrays.asList("", "X", "","", "X", "","", "X", "")).isWon(), is(true));
 
-        assertThat(new Board(Arrays.asList((new String[]{"O", "", "",
-                                                         "O", "", "",
-                                                         "O", "", ""}))).isWon(), is(true));
+        assertThat(new Board(Arrays.asList("O", "", "",
+                "O", "", "",
+                "O", "", "")).isWon(), is(true));
     }
 
     @Test
     public void shouldNotWinIfOneCellIsDissimilar(){
         assertThat(new Board(
-                Arrays.asList((new String[]{"", "", "X",
-                                            "", "", "O",
-                                            "", "", "X"}))).isWon(), is(false));
+                Arrays.asList("", "", "X",
+                        "", "", "O",
+                        "", "", "X")).isWon(), is(false));
 
         assertThat(new Board(
-                Arrays.asList((new String[]{"", "", "X",
-                                            "", "0", "",
-                                            "X", "", ""}))).isWon(), is(false));
+                Arrays.asList("", "", "X",
+                        "", "0", "",
+                        "X", "", "")).isWon(), is(false));
 
         assertThat(new Board(
-                Arrays.asList((new String[]{"X", "", "",
-                                            "0", "", "",
-                                            "X", "", ""}))).isWon(), is(false));
+                Arrays.asList("X", "", "",
+                        "0", "", "",
+                        "X", "", "")).isWon(), is(false));
     }
 
     @Test
     public void shouldNotBeWonIfBoardIsEmpty(){
 
         assertThat(new Board(
-                Arrays.asList((new String[]{"", "", "",
-                                            "", "", "",
-                                            "", "", ""}))).isWon(), is(false));
+                Arrays.asList("", "", "",
+                        "", "", "",
+                        "", "", "")).isWon(), is(false));
     }
 
     @Test

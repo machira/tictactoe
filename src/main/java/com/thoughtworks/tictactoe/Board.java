@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class Board {
     List<String> boardArray;
+
     public Board(List<String> boardArray) {
         this.boardArray = boardArray;
     }
