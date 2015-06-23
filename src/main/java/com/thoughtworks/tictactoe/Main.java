@@ -13,7 +13,7 @@ public class Main {
         Board board = new Board();
         Player [] players = {
                                 new Player("Player1", bufferedReader, System.out,"X"),
-                                new ComputerPlayer("O")
+                                new ComputerPlayer("O", "X")
 //                Player("Player2", bufferedReader, System.out,"O")
                             };
         Game game = new Game(board,players,System.out);

@@ -16,7 +16,8 @@ public class ComputerPlayerTest {
     ComputerPlayer computerPlayer;
     @Before
     public void setUp() throws Exception {
-        computerPlayer = new ComputerPlayer("O");
+        String opponentMark = "X";
+        computerPlayer = new ComputerPlayer("O", opponentMark);
     }
 
     @Test
@@ -65,13 +66,52 @@ public class ComputerPlayerTest {
                                                 "", "O", "",
                                                 "", "", ""));
 
+        int blockingMove = computerPlayer.blockOpposingPlayer(board);
+        Assert.assertThat(blockingMove, is(1));
+
+    }
+
+    @Test
+    public void shouldIdentifyBlockingMoves(){
+        Board boardWithNoBlockingMove = new Board(Arrays.asList("", "", "",
+                                                                "", "", "",
+                                                                "", "", ""));
+        int noBlockingMove = computerPlayer.blockOpposingPlayer(boardWithNoBlockingMove);
+        Assert.assertThat(noBlockingMove, is(-1));
+
+        Board boardWithBlockingMoves = new Board(Arrays.asList(  "X","","X",
+                                                                "", "O", "",
+                                                                "", "", ""));
+        int blockingMove = computerPlayer.blockOpposingPlayer(boardWithBlockingMoves);
+        Assert.assertThat(blockingMove, is(1));
+
+
     }
 
     @Test
     public void shouldPrioritizeWinningOverBlocking(){
-        Board boardWinningOrBlocking = new Board(Arrays.asList( "X","","X",
-                                                                "", "O", "",
-                                                                "", "", ""));
 
+//        this mocks a board that looks like this:
+//        "X","","X",
+//        "O", "O", "",
+//        "", "", ""
+
+        Board boardWinningOrBlocking = mock(Board.class);
+        // We describe the two winning conditions of the board.
+        when(boardWinningOrBlocking.isWinningMove(anyInt(),anyString())).thenReturn(false);
+        when(boardWinningOrBlocking.isWinningMove(1,"X")).thenReturn(true);
+        when(boardWinningOrBlocking.isWinningMove(5,"O")).thenReturn(true);
+
+        // we describe the cells occupied on the board.
+        when(boardWinningOrBlocking.isEmpty(anyInt())).thenReturn(true);
+        when(boardWinningOrBlocking.isEmpty(0)).thenReturn(false);
+        when(boardWinningOrBlocking.isEmpty(2)).thenReturn(false);
+        when(boardWinningOrBlocking.isEmpty(3)).thenReturn(false);
+        when(boardWinningOrBlocking.isEmpty(4)).thenReturn(false);
+
+        computerPlayer.makeMove(boardWinningOrBlocking);
+        verify(boardWinningOrBlocking).move(5,"O");
     }
+
+
 }

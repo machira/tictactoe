@@ -78,6 +78,10 @@ public class Board {
 
 
     public boolean isWinningMove(int i, String mark) {
+        if(!isEmpty(i)){
+            return false;
+        }
+
         boardArray.set(i, mark);
         boolean isWon = isWon();
         boardArray.set(i,"");
