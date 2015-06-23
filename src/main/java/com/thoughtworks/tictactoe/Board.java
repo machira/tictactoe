@@ -96,4 +96,9 @@ public class Board {
         }
         return true;
     }
+
+    public boolean isMyCell(int cell, String myMark) {
+
+        return boardArray.get(cell).equals(myMark);
+    }
 }

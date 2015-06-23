@@ -183,4 +183,16 @@ public class BoardTest {
         assertThat(board1.equals(board2), is(true));
     }
 
+    @Test
+    public void shouldIdentifyOwnershipOfPositions(){
+        assertThat(board.isMyCell(2, "X"), is(false));
+
+        Board board2 = new Board(Arrays.asList( "O", "", "",
+                                                "", "", "",
+                                                "", "", ""));
+
+        assertThat(board2.isMyCell(0, "O"), is(true));
+
+    }
+
 }

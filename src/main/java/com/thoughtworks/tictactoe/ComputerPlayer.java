@@ -1,7 +1,11 @@
 package com.thoughtworks.tictactoe;
 
-import java.io.BufferedReader;
-import java.io.PrintStream;
+import com.sun.org.apache.xml.internal.utils.ListingErrorHandler;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by machira on Jun/21/15.
@@ -9,9 +13,16 @@ import java.io.PrintStream;
 public class ComputerPlayer extends Player {
     int BOARD_SIZE = 9;
     private String opponentMark;
+    private Map<Integer, List<Integer>> forkMap;
+
     public ComputerPlayer(String mark, String opponentMark) {
         super("Computer Player", null, null, mark);
         this.opponentMark = opponentMark;
+        this.forkMap = new HashMap<Integer, List<Integer>>();
+        forkMap.put(0, Arrays.asList(2,6,8));
+        forkMap.put(1, Arrays.asList(7));
+        forkMap.put(2, Arrays.asList(6,8));
+        forkMap.put(3, Arrays.asList(5));
     }
 
     public void makeMove(Board board){
@@ -56,6 +67,20 @@ public class ComputerPlayer extends Player {
         for (int i = 0; i < BOARD_SIZE; i++) {
             if(board.isWinningMove(i, opponentMark)) {
                 return i;
+            }
+        }
+        return -1;
+    }
+
+    public int forkOpportunities(Board board) {
+        //TODO: can I generalize 3?
+        for(Map.Entry<Integer, List<Integer>> key : forkMap.entrySet()){
+            if(board.isMyCell(key.getKey(), mark)){
+                for(Integer cell : key.getValue()){
+                    if(board.isEmpty(cell)){
+                        return cell;
+                    }
+                }
             }
         }
         return -1;

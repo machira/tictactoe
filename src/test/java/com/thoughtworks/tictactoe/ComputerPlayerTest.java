@@ -113,5 +113,29 @@ public class ComputerPlayerTest {
         verify(boardWinningOrBlocking).move(5,"O");
     }
 
+    @Test
+    public void shouldCreateForksWheneverPossible(){
+        Board board = new Board(Arrays.asList(  "O","","",
+                                                "", "", "",
+                                                "", "", ""));
+
+        int move = computerPlayer.forkOpportunities(board);
+        Assert.assertThat(move, is(2));
+
+        Board board1 = new Board(Arrays.asList( "O","","X",
+                                                "", "", "",
+                                                "", "", ""));
+
+        int move1 = computerPlayer.forkOpportunities(board1);
+        Assert.assertThat(move1, is(6));
+
+        Board board2 = new Board(Arrays.asList( "O","","X",
+                                                "", "", "",
+                                                "X", "", ""));
+
+        int move2 = computerPlayer.forkOpportunities(board2);
+        Assert.assertThat(move2, is(8));
+
+    }
 
 }
