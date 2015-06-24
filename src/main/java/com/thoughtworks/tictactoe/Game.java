@@ -24,13 +24,12 @@ public class Game {
         while(true){
             for(Player player: players){
                 player.makeMove(board);
-                if(board.isFull()){
-                    return;
-                }if(board.isWon()){
+                if(board.isWon()){
                     printStream.println(player.getPlayerName() + " has won.");
                     return;
+                }else if(board.isFull()){
+                    return;
                 }
-
                 printStream.println(board.toString());
             }
 
@@ -39,7 +38,6 @@ public class Game {
 
     public void start() {
        alternatePlayers();
-
     }
 
 }

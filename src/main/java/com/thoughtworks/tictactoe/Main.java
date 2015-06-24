@@ -3,10 +3,7 @@ package com.thoughtworks.tictactoe;
 import com.thoughtworks.tictactoe.player.ComputerPlayer;
 import com.thoughtworks.tictactoe.player.HumanPlayer;
 import com.thoughtworks.tictactoe.player.Player;
-import com.thoughtworks.tictactoe.strategy.BlockOpposingPlayerStrategy;
-import com.thoughtworks.tictactoe.strategy.ForkOpportunityStrategy;
-import com.thoughtworks.tictactoe.strategy.Strategy;
-import com.thoughtworks.tictactoe.strategy.WinningMoveStrategy;
+import com.thoughtworks.tictactoe.strategy.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,7 +25,8 @@ public class Main {
 
         List<Strategy> strategyList = Arrays.asList(new WinningMoveStrategy("O"),
                                                     new BlockOpposingPlayerStrategy("X"),
-                                                    new ForkOpportunityStrategy("O", forkMap));
+                                                    new ForkOpportunityStrategy("O", forkMap),
+                                                    new FirstAvailableCellStrategy());
 
         Player[] players = {
                                 new HumanPlayer("Player1", bufferedReader, System.out,"X"),
