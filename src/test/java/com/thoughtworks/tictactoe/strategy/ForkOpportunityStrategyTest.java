@@ -37,21 +37,21 @@ public class ForkOpportunityStrategyTest {
                                                 "", "", "",
                                                 "", "", ""));
 
-        int move = forks.move(board);
+        int move = forks.recommendMove(board);
         Assert.assertThat(move, is(2));
 
         Board board1 = new Board(Arrays.asList( "O", "", "X",
                                                 "", "", "",
                                                 "", "", ""));
 
-        int move1 = forks.move(board1);
+        int move1 = forks.recommendMove(board1);
         Assert.assertThat(move1, is(6));
 
         Board board2 = new Board(Arrays.asList( "O", "", "X",
                                                 "", "", "",
                                                 "X", "", ""));
 
-        int move2 = forks.move(board2);
+        int move2 = forks.recommendMove(board2);
         Assert.assertThat(move2, is(8));
 
     }

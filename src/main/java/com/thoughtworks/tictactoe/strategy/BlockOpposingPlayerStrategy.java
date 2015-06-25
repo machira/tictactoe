@@ -18,8 +18,8 @@ public class BlockOpposingPlayerStrategy implements Strategy {
      * @param board
      * @return
      */
-    public int move(Board board) {
-        return new WinningMoveStrategy(opponentMark).move(board);
+    public int recommendMove(Board board) {
+        return new WinningMoveStrategy(opponentMark).recommendMove(board);
     }
 
 }

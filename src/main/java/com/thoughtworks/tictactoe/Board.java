@@ -101,4 +101,8 @@ public class Board {
 
         return boardArray.get(cell).equals(myMark);
     }
+
+    public boolean isOpponentCell(int cell, String opponentMark){
+        return boardArray.get(cell).equals(opponentMark);
+    }
 }

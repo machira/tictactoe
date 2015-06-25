@@ -29,7 +29,7 @@ public class BlockOpposingPlayerStrategyTest {
                                                 "", "", "",
                                                 "", "", ""));
 
-        int blockingMove = strategy.move(board);
+        int blockingMove = strategy.recommendMove(board);
         Assert.assertThat(blockingMove, is(1));
 
     }
@@ -39,13 +39,13 @@ public class BlockOpposingPlayerStrategyTest {
         Board boardWithNoBlockingMove = new Board(Arrays.asList("", "", "",
                 "", "", "",
                 "", "", ""));
-        int noBlockingMove = strategy.move(boardWithNoBlockingMove);
+        int noBlockingMove = strategy.recommendMove(boardWithNoBlockingMove);
         Assert.assertThat(noBlockingMove, is(-1));
 
         Board boardWithBlockingMoves = new Board(Arrays.asList(  "X","","X",
                 "", "O", "",
                 "", "", ""));
-        int blockingMove = strategy.move(boardWithBlockingMoves);
+        int blockingMove = strategy.recommendMove(boardWithBlockingMoves);
         Assert.assertThat(blockingMove, is(1));
 
 

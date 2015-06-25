@@ -8,7 +8,7 @@ import com.thoughtworks.tictactoe.Board;
 public class FirstAvailableCellStrategy implements Strategy {
 
 
-    public int move(Board board) {
+    public int recommendMove(Board board) {
         for (int i = 0; i < BOARD_SIZE; i++) {
             if(board.isEmpty(i)){
                 return i;

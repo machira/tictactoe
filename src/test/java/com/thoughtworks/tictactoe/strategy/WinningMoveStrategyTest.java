@@ -8,7 +8,6 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
 /**
  * Created by machira on Jun/23/15.
@@ -28,7 +27,7 @@ public class WinningMoveStrategyTest {
                                                                 "", "", "",
                                                                 "", "", ""));
 
-        int move = winningMoveStrategy.move(oneHorizontalMoveToWin);
+        int move = winningMoveStrategy.recommendMove(oneHorizontalMoveToWin);
         Assert.assertThat(move, is(2));
 
 
@@ -36,20 +35,20 @@ public class WinningMoveStrategyTest {
                                                         "", "", "",
                                                         "", "", ""));
 
-        int noMoveFound = winningMoveStrategy.move(noSingleMoveWin);
+        int noMoveFound = winningMoveStrategy.recommendMove(noSingleMoveWin);
         Assert.assertThat(noMoveFound, is(-1));
 
         Board singleVerticalMoveToWin = new Board(Arrays.asList("O","X","",
                                                                 "O", "", "",
                                                                 "", "", ""));
-        int winningVerticalMove = winningMoveStrategy.move(singleVerticalMoveToWin);
+        int winningVerticalMove = winningMoveStrategy.recommendMove(singleVerticalMoveToWin);
         Assert.assertThat(winningVerticalMove,is(6));
 
 
         Board singleDiagonalMoveToWin = new Board(Arrays.asList("O","X","",
                                                                 "", "O", "",
                                                                 "", "", ""));
-        int winningDiagonalMove = winningMoveStrategy.move(singleDiagonalMoveToWin);
+        int winningDiagonalMove = winningMoveStrategy.recommendMove(singleDiagonalMoveToWin);
         Assert.assertThat(winningDiagonalMove,is(8));
     }
 }

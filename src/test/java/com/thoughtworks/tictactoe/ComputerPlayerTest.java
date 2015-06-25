@@ -46,11 +46,23 @@ public class ComputerPlayerTest {
 
         Board boardWinningOrBlocking = mock(Board.class);
         // We describe the two winning conditions of the board.
-        when(blockOpposingPlayerStrategy.move(boardWinningOrBlocking)).thenReturn(1);
-        when(winningMoveStrategy.move(boardWinningOrBlocking)).thenReturn(5);
+        when(blockOpposingPlayerStrategy.recommendMove(boardWinningOrBlocking)).thenReturn(1);
+        when(winningMoveStrategy.recommendMove(boardWinningOrBlocking)).thenReturn(5);
 
         computerPlayer.makeMove(boardWinningOrBlocking);
         verify(boardWinningOrBlocking).move(5,"O");
+
+        Board emptyBoard = new Board(Arrays.asList( "X","","X",
+                "O","","O",
+                "","",""));
+
+//        when(emptyBoard.isEmpty(TOP_LEFT_CORNER)).thenReturn(false);
+//        when(emptyBoard.isEmpty(TOP_RIGHT_CORNER)).thenReturn(false);
+//        when(emptyBoard.isEmpty(MID_LEFT_CORNER)).thenReturn(false);
+//        when(emptyBoard.isEmpty(MID_RIGHT_CORNER)).thenReturn(false);
+//
+//        when(emptyBoard.isOpponentCell(TOP_LEFT_CORNER,"X")).thenReturn(true);
+//        when(emptyBoard.isOpponentCell(TOP_RIGHT_CORNER,"X")).thenReturn(true);
     }
 
 

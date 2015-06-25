@@ -7,5 +7,5 @@ import com.thoughtworks.tictactoe.Board;
  */
 public interface Strategy {
     int BOARD_SIZE = 9;
-    int move(Board board);
+    int recommendMove(Board board);
 }

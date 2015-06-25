@@ -18,7 +18,7 @@ public class ForkOpportunityStrategy implements Strategy {
 
     }
 
-    public int move(Board board){
+    public int recommendMove(Board board){
         for(Map.Entry<Integer, List<Integer>> key : forkMap.entrySet()){
             if(board.isMyCell(key.getKey(), mark)){
                 for(Integer cell : key.getValue()){

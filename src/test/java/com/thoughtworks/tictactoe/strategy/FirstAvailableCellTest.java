@@ -26,11 +26,11 @@ public class FirstAvailableCellTest {
     @Test
     public void shouldMakeMovesBasedOnFirstAvailableSpace(){
         when(board.isEmpty(0)).thenReturn(true);
-        int move = firstAvailableCellStrategy.move(board);
+        int move = firstAvailableCellStrategy.recommendMove(board);
         Assert.assertThat(move, is(0));
 
         when(board.isEmpty(anyInt())).thenReturn(false).thenReturn(false).thenReturn(true);
-        Assert.assertThat(firstAvailableCellStrategy.move(board), is(2));
+        Assert.assertThat(firstAvailableCellStrategy.recommendMove(board), is(2));
     }
 
 }

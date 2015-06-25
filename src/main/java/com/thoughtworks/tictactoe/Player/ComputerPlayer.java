@@ -18,7 +18,7 @@ public class ComputerPlayer implements Player {
 
     public void makeMove(Board board){
         for(Strategy strategy: strategyList){
-            int move = strategy.move(board);
+            int move = strategy.recommendMove(board);
             if(move != -1){
                 board.move(move, mark);
                 return;
